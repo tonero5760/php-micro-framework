@@ -8,8 +8,28 @@ require_once 'partials/head_partials.php';
  <div class="container-fluid relative" style="background:url(./img/bg.jpeg); background-repeat:no-repeat; background-size:cover;background-position:center; height:100vh">
 
       <div class="row">
+
          <div class="col-md-4 offset-md-2 card px-2 py-3 mt-4 shadow-md absolute top-3">
             <div style="display:flex;justify-content:center;align-items:center;margin-bottom:30px;"><img src="<?=ROOT?>assets/img/logo.jpeg" alt="logo" style="border-radius:50%; width:20%;"></div>
+
+              <?php if (Session::exist('success')): ?>
+              <?php $FLASH_SUCCESS = Session::get('success');
+              Session::pull('success');?>
+                   <div class="alert alert-success" role="alert">
+                <?=$FLASH_SUCCESS?>
+                   </div>
+                <?php ?>
+            <?php endif;?>
+
+              <?php if (Session::exist('fail')): ?>
+                   <div class="alert alert-danger" role="alert">
+                     <?php $FLASH_FAIL = Session::get('fail');
+                     Session::pull('fail');?>
+                <?=$FLASH_FAIL?>
+                   </div>
+                <?php ?>
+            <?php endif;?>
+
           <form action="" method="post">
             <legend class="text-center"><?=$pageTitle?></legend>
             <div class="form-group">

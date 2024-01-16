@@ -12,11 +12,12 @@ class Session{
         }
     }
 
-    public static function get(){
-
+    public static function get($name){
+        return $_SESSION[$name];
     }
 
-    public static function pull(){
-
+    public static function pull($name){
+        unset($_SESSION[$name]);
+        return true;
     }
 }

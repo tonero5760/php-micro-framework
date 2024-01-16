@@ -1,4 +1,4 @@
-<?php 
+<?php
 $pageTitle = "User Registeration";
 
 if (isset($_POST['register'])) {
@@ -10,33 +10,30 @@ if (isset($_POST['register'])) {
 
     $userDetails = ['username' => $username, 'email' => $email, 'password' => $password, 'confirm' => $confirm];
 
- 
     $errorList = [];
     $res = isEmpty($userDetails);
     if (is_array($res)) {
 
-        Session::set('username',$res['username']);
-        Session::set('email',$res['email']);
-        Session::set('password',$res['password']);
-        Session::set('confirm',$res['confirm']);
-        header("location:register");
+        Session::set('username', $res['username']);
+        Session::set('email', $res['email']);
+        Session::set('password', $res['password']);
+        Session::set('confirm', $res['confirm']);
+
+        redirect("register");
 
         // header("location:register?username=" . $res['username'] . "&&email=" . $res['email'] . "&&password=" . $res['password']);
-        exit();
 
     }
 
     if (!isPasswordMatch($userDetails['password'], $userDetails['confirm'])) {
         $msg = "Password does not match";
-        header("location:register.php?password=" . $msg);
-        exit();
+        redirect("register");
 
     }
 
     if (!inputLength($userDetails['username'])) {
         $msg = "Username too short";
-        header("location:register.php?username=" . $msg);
-        exit();
+        redirect("redirect");
 
     }
 
@@ -44,7 +41,8 @@ if (isset($_POST['register'])) {
 
     if ($res) {
         $msg = "User Already exists";
-        header("location:register.php?username=" . $msg);
+        Session::set('fail', $msg);
+        redirect("register");
         exit();
 
     }
@@ -55,15 +53,16 @@ if (isset($_POST['register'])) {
 
     if ($conn->status) {
         $msg = "Registeration Successful!!!";
-        header("location:login.php?success=" . $msg);
-        exit();
+        Session::set('success', $msg);
+        redirect("login");
+
     }
 
     $msg = "Registeration Failed, Try again...!!!";
-    header("location:register.php?danger=" . $msg);
+    Session::set('fail', $msg);
+    redirect("register");
     exit();
 
 }
-
 
 require 'public/views/guest/view.register.php';

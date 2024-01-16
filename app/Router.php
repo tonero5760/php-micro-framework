@@ -13,3 +13,8 @@ if (array_key_exists($to, $routes)) {
 } else {
     require 'app/controller/404.php';
 }
+
+function redirect($to){
+    header("location:$to");
+    exit();
+}
