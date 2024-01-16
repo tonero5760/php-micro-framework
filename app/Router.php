@@ -6,6 +6,8 @@ $routes = [
     'login' => 'app/controller/Login.php',
     'contacts' => 'app/controller/Contact.php',
     'about' => 'app/controller/About.php',
+    'dashboard' => 'app/controller/Dashboard.php',
+    'logout' => 'app/controller/Logout.php'
 ];
 
 if (array_key_exists($to, $routes)) {

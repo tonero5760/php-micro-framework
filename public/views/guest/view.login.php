@@ -44,7 +44,7 @@ Session::pull('fail');?>
             <?php endif;?>
 
             <div style="display:flex;justify-content:center;align-items:center;margin-bottom:30px;"><img src="<?=ROOT?>assets/img/logo.jpeg" alt="logo" style="border-radius:50%; width:20%;"></div>
-          <form action="auth.php" method="POST">
+          <form method="POST">
                <legend class="text-center"><?=$pageTitle?></legend>
                 <input type="hidden" name="login">
 
@@ -55,6 +55,9 @@ Session::pull('fail');?>
                <?php if (isset($_GET['email'])): ?>
                  <small id="helpId" class="form-text text-danger"><?=$_GET['email']?></small>
               <?php endif;?>
+               <?php if (Session::exist('email')): ?>
+                 <small id="helpId" class="form-text text-danger"><?=Session::get('email')?></small>
+              <?php endif;?>
             </div>
 
                <div class="form-group">
@@ -63,6 +66,9 @@ Session::pull('fail');?>
                 class="form-control" name="password" id="" aria-describedby="helpId" placeholder="">
              <?php if (isset($_GET['password'])): ?>
                  <small id="helpId" class="form-text text-danger"><?=$_GET['password']?></small>
+              <?php endif;?>
+               <?php if (Session::exist('password')): ?>
+                 <small id="helpId" class="form-text text-danger"><?=Session::get('password')?></small>
               <?php endif;?>
             </div>
 

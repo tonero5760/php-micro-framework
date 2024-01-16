@@ -41,7 +41,7 @@ require_once 'partials/head_partials.php';
                  <small id="helpId" class="form-text text-danger"><?=$_GET['username']?></small>
               <?php endif;?>
                <?php if (Session::exist('username')): ?>
-                 <small id="helpId" class="form-text text-danger"><?=$_SESSION['username']?></small>
+                 <small id="helpId" class="form-text text-danger"><?=Session::get('username')?></small>
               <?php endif;?>
 
             </div>
