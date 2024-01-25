@@ -13,11 +13,24 @@ class Session{
     }
 
     public static function get($name){
-        return $_SESSION[$name];
+        if(is_array($_SESSION[$name])){
+        return json_decode(json_encode($_SESSION[$name]))[0];
+        }else{
+return json_decode(json_encode($_SESSION[$name]));
+
+        }
+
+        
     }
 
     public static function pull($name){
         unset($_SESSION[$name]);
         return true;
+    }
+
+    public static function destroy(){
+        unset($_GET);
+        unset($_POST);
+        unset($_SESSION);
     }
 }

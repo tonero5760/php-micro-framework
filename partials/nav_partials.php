@@ -21,13 +21,21 @@
             </li>
           </ul>
           <ul class="navbar-nav mt-2 mt-lg-0">
-             <li class="nav-item active">
+            <?php if (Session::exist('isLoggedIn')): ?>
+               <li class="nav-item active">
+              <a class="nav-link" href="logout">Logout <span class="sr-only">(current)</span></a>
+            </li>
+            <?php else: ?>
+                <li class="nav-item active">
               <a class="nav-link" href="register">Signup <span class="sr-only">(current)</span></a>
             </li>
               <li class="nav-item active">
               <a class="nav-link" href="login">Sigin <span class="sr-only">(current)</span></a>
             </li>
+            <?php endif;?>
+
+
           </ul>
-         
+
         </div>
       </nav>
